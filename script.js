@@ -59,4 +59,15 @@ function operate () {
     };
 };
 
-operate();
+// operate();
+
+// Display manipulation
+
+const display = document.querySelector(".display");
+const buttons = document.querySelectorAll(".buttons button#num");
+
+buttons.forEach(button => {
+    button.addEventListener("click", (event) => {
+        display.textContent += event.target.textContent;
+    });
+});
