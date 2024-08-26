@@ -1,0 +1,10 @@
+.display {
+    border: 1px solid;
+    padding: 15px;
+    margin: 15px;
+    text-align: right;
+}
+
+button {
+    margin: 15px;
+}

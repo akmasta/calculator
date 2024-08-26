@@ -1,5 +1,8 @@
 console.log("let's do the math, boy.")
 
+let firstNumber = 0;
+let secondNumber = 0;
+let oeprator = "";
 
 let a = 20;
 let b = 4;
@@ -35,3 +38,25 @@ function divide (a, b) {
 };
 
 divide(a, b);
+
+// Prompt for numbers and operator
+
+function operate () {
+    let firstNumber = Number(prompt("Enter a number:"));
+    let operator = prompt("Enter an operator:");
+    let secondNumber = Number(prompt("Enter another number:"));
+
+    if (operator == "+") {
+        return add(firstNumber, secondNumber);
+    } else if (operator == "-") {
+        return subtract(firstNumber,secondNumber);
+    } else if (operator == "*") {
+        return multiply(firstNumber, secondNumber);
+    } else if (operator == "/") {
+        return divide(firstNumber, secondNumber);
+    } else {
+        alert("Error!");
+    };
+};
+
+operate();
