@@ -8,36 +8,24 @@ let a = 20;
 let b = 4;
 
 // Add two integers together
-
 function add(a, b) {
-    console.log((a + b));
+    return a + b;
 };
-
-add(a, b);
 
 // Subtract one int from another
-
 function subtract (a, b) {
-    console.log(a - b);
+    return a - b;
 };
-
-subtract(a, b);
 
 // Multiply to ints
-
 function multiply (a, b) {
-    console.log(a * b)
+    return a * b;
 };
-
-multiply(a, b);
 
 // Divide one int through another
-
 function divide (a, b) {
-    console.log(a / b)
+    return a / b;
 };
-
-divide(a, b);
 
 // Prompt for numbers and operator
 
@@ -62,12 +50,15 @@ function operate () {
 // operate();
 
 // Display manipulation
-
 const display = document.querySelector(".display");
 const buttons = document.querySelectorAll(".buttons button#num");
 
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
-        display.textContent += event.target.textContent;
+        if (display.textContent == 0) {
+        display.textContent = event.target.textContent;
+        } else {
+            display.textContent += event.target.textContent;
+        };
     });
 });
