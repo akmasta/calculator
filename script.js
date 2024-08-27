@@ -62,3 +62,13 @@ buttons.forEach(button => {
         };
     });
 });
+
+// Storing values for operation
+const operator = document.querySelectorAll(".buttons button#operator");
+
+operator.forEach(button => {
+    button.addEventListener("click", (event) => {
+        firstNumber = display.textContent;
+    });
+});
+
