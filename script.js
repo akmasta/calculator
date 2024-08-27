@@ -66,9 +66,17 @@ const equals = document.querySelector(".buttons button#equal")
 
 operator.forEach(button => {
     button.addEventListener("click", (event) => {
-        firstNumber = display.textContent;
-        usedOperator = event.target.textContent;
-        operatorClicked = true;
+        if (firstNumber == 0) {
+            firstNumber = display.textContent;
+            usedOperator = event.target.textContent;
+            operatorClicked = true;
+        } else { // Calculate with more than two operators
+            secondNumber = display.textContent;
+            display.textContent = operate();
+            usedOperator = event.target.textContent;
+            operatorClicked = true;
+            firstNumber = display.textContent;
+        }
     });
 });
 
