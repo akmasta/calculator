@@ -2,7 +2,8 @@ console.log("let's do the math, boy.")
 
 let firstNumber = 0;
 let secondNumber = 0;
-let oeprator = "";
+let usedOperator = "";
+let operatorClicked = false;
 
 let a = 20;
 let b = 4;
@@ -30,24 +31,19 @@ function divide (a, b) {
 // Prompt for numbers and operator
 
 function operate () {
-    let firstNumber = Number(prompt("Enter a number:"));
-    let operator = prompt("Enter an operator:");
-    let secondNumber = Number(prompt("Enter another number:"));
 
-    if (operator == "+") {
-        return add(firstNumber, secondNumber);
-    } else if (operator == "-") {
-        return subtract(firstNumber,secondNumber);
-    } else if (operator == "*") {
-        return multiply(firstNumber, secondNumber);
-    } else if (operator == "/") {
-        return divide(firstNumber, secondNumber);
+    if (usedOperator == "+") {
+        return add(Number(firstNumber), Number(secondNumber));
+    } else if (usedOperator == "-") {
+        return subtract(Number(firstNumber), Number(secondNumber));
+    } else if (usedOperator == "*") {
+        return multiply(Number(firstNumber), Number(secondNumber));
+    } else if (usedOperator == "/") {
+        return divide(Number(firstNumber), Number(secondNumber));
     } else {
         alert("Error!");
     };
 };
-
-// operate();
 
 // Display manipulation
 const display = document.querySelector(".display");
@@ -55,20 +51,29 @@ const buttons = document.querySelectorAll(".buttons button#num");
 
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
-        if (display.textContent == 0) {
+        if (display.textContent == 0 || operatorClicked) {
         display.textContent = event.target.textContent;
+        operatorClicked = false;
         } else {
             display.textContent += event.target.textContent;
         };
     });
 });
 
-// Storing values for operation
+// Store values for operation
 const operator = document.querySelectorAll(".buttons button#operator");
+const equals = document.querySelector(".buttons button#equal")
 
 operator.forEach(button => {
     button.addEventListener("click", (event) => {
         firstNumber = display.textContent;
+        usedOperator = event.target.textContent;
+        operatorClicked = true;
     });
 });
 
+//Operate on values
+equals.addEventListener("click", (event) => {
+    secondNumber = display.textContent;
+    display.textContent = operate();
+})
