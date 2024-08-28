@@ -33,6 +33,8 @@ button {
     min-width: 30px;
     border: none;
     background-color: rgb(171, 171, 171);
+    font-family: "Times New Roman";
+    font-weight: bold;
 }
 
 button#operator {

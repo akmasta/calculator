@@ -109,3 +109,28 @@ clear.addEventListener("click", (event) => {
     operatorClicked = false;
     equalsClicked = false;
 });
+
+// Add keyboard support
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    // Handle ints and floater
+    if (!isNaN(key) || key === ".") {
+        document.querySelector(`.buttons button#num[value="${key}"]`)?.click();
+    }
+
+    // Handle operator keys (+, -, *, /)
+    else if (['+', '-', '*', '/'].includes(key)) {
+        document.querySelector(`.buttons button#operator[value="${key}"]`)?.click();
+    }
+
+    // Handle "Enter" key as equals ("=")
+    else if (key === "Enter") {
+        document.querySelector(".buttons button#equal")?.click();
+    }
+
+    // Handle "Backspace" or "Escape" key as clear ("C")
+    else if (key === "Backspace" || key === "Escape") {
+        document.querySelector(".buttons button#reset")?.click();
+    }
+});
