@@ -4,6 +4,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let usedOperator = "";
 let operatorClicked = false;
+let equalsClicked = false;
 
 let a = 20;
 let b = 4;
@@ -45,7 +46,12 @@ function operate () {
 
 // Display manipulation
 const display = document.querySelector(".display");
-const buttons = document.querySelectorAll(".buttons button#num");
+const buttons = document.querySelectorAll(".buttons button#num, #floater");
+const floater = document.querySelector(".buttons button#floater");
+
+floater.addEventListener("click", (event) => {
+    floater.disabled = true;
+});
 
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
@@ -64,15 +70,18 @@ const equals = document.querySelector(".buttons button#equal")
 
 operator.forEach(button => {
     button.addEventListener("click", (event) => {
-        if (firstNumber == 0) {
+        if (firstNumber == 0 || equalsClicked) {
             firstNumber = display.textContent;
             usedOperator = event.target.textContent;
             operatorClicked = true;
+            floater.disabled = false;
+            equalsClicked = false;
         } else { // Calculate with more than two operators
             secondNumber = display.textContent;
             display.textContent = operate();
             usedOperator = event.target.textContent;
             operatorClicked = true;
+            floater.disabled = false;
             firstNumber = display.textContent;
         }
     });
@@ -83,6 +92,7 @@ equals.addEventListener("click", (event) => {
     secondNumber = display.textContent;
     if (secondNumber != 0) {
         display.textContent = Math.round(operate() * 1000) / 1000;
+        equalsClicked = true;
     } else {
         display.textContent = "Don't try to crash me, please :)";
     };
@@ -97,4 +107,5 @@ clear.addEventListener("click", (event) => {
     firstNumber = 0;
     secondNumber = 0;
     operatorClicked = false;
+    equalsClicked = false;
 });
