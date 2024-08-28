@@ -28,10 +28,8 @@ function divide (a, b) {
     return a / b;
 };
 
-// Prompt for numbers and operator
-
+// Operate on numbers with chosen operators
 function operate () {
-
     if (usedOperator == "+") {
         return add(Number(firstNumber), Number(secondNumber));
     } else if (usedOperator == "-") {
@@ -41,7 +39,7 @@ function operate () {
     } else if (usedOperator == "/") {
         return divide(Number(firstNumber), Number(secondNumber));
     } else {
-        alert("Error!");
+        return 0;
     };
 };
 
@@ -80,8 +78,23 @@ operator.forEach(button => {
     });
 });
 
-//Operate on values
+//Operate on values after storing secondNumber
 equals.addEventListener("click", (event) => {
     secondNumber = display.textContent;
-    display.textContent = operate();
-})
+    if (secondNumber != 0) {
+        display.textContent = Math.round(operate() * 1000) / 1000;
+    } else {
+        display.textContent = "Don't try to crash me, please :)";
+    };
+});
+
+//Clearing display, reset values
+
+const clear = document.querySelector(".buttons button#reset")
+
+clear.addEventListener("click", (event) => {
+    display.textContent = 0;
+    firstNumber = 0;
+    secondNumber = 0;
+    operatorClicked = false;
+});
